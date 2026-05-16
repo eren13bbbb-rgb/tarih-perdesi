@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AYT Edebiyat Yazar–Eser Testi | Tarih Perdesi</title>
+  <meta
+    name="description"
+    content="AYT Edebiyat yazar-eser testi. Rastgele sorularla önemli sanatçı-eser eşleştirmelerini tekrar edin ve sonucunuzu görün."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">TP</span>
+        <span class="logo-text">
+          <strong>Tarih Perdesi</strong>
+          <small>Tarih • Edebiyat • Test</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç veya kapat">
+        ☰
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="edebiyat.html">Edebiyat</a>
+        <a href="tarih.html">Tarih</a>
+        <a href="test-merkezi.html" class="active-link">Test Merkezi</a>
+        <a href="hakkinda.html">Hakkında</a>
+        <a href="iletisim.html" class="nav-highlight">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero subject-hero">
+      <div class="container subject-hero-grid">
+        <div>
+          <p class="eyebrow">AYT EDEBİYAT TESTİ</p>
+          <h1>Yazar–Eser Testi</h1>
+          <p>
+            Her testte soru havuzundan rastgele seçilen 10 soru gelir.
+            Şıklar karışır, cevabını seçtikten sonra doğruyu görürsün,
+            test sonunda da net biçimde sonucun çıkar.
+          </p>
+        </div>
+
+        <aside class="hero-summary-card">
+          <h3>Test yapısı</h3>
+          <ul>
+            <li>10 rastgele soru</li>
+            <li>Karışık şıklar</li>
+            <li>Anında doğru-yanlış geri bildirimi</li>
+            <li>Sonuç ekranı</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container test-shell">
+        <!-- TEST EKRANI -->
+        <section class="interactive-test-card" id="testArea">
+          <div class="test-meta">
+            <div>
+              <span class="meta-label">İlerleme</span>
+              <strong id="progressText">Soru 1 / 10</strong>
+            </div>
+
+            <div>
+              <span class="meta-label">Doğru</span>
+              <strong id="liveScore">0</strong>
+            </div>
+          </div>
+
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <article class="question-card">
+            <p class="question-kicker" id="questionCategory">Yazar–Eser</p>
+            <h2 id="questionText">Soru hazırlanıyor...</h2>
+
+            <div class="answer-grid" id="answerGrid"></div>
+
+            <div class="feedback-box hidden" id="feedbackBox">
+              <strong id="feedbackTitle"></strong>
+              <p id="feedbackText"></p>
+            </div>
+
+            <div class="test-controls">
+              <button class="btn btn-primary small-btn" id="nextQuestionBtn" disabled>
+                Sonraki Soru
+              </button>
+            </div>
+          </article>
+        </section>
+
+        <!-- SONUÇ EKRANI -->
+        <section class="result-card hidden" id="resultArea">
+          <p class="eyebrow">TEST TAMAMLANDI</p>
+          <h2>Sonucun hazır.</h2>
+
+          <div class="result-score-grid">
+            <div class="result-score-box">
+              <strong id="finalCorrect">0</strong>
+              <span>Doğru</span>
+            </div>
+
+            <div class="result-score-box">
+              <strong id="finalWrong">0</strong>
+              <span>Yanlış</span>
+            </div>
+
+            <div class="result-score-box">
+              <strong id="finalPercent">%0</strong>
+              <span>Başarı</span>
+            </div>
+          </div>
+
+          <p class="result-message" id="resultMessage"></p>
+
+          <div class="result-actions">
+            <button class="btn btn-primary" id="restartTestBtn">
+              Testi Yeniden Çöz
+            </button>
+
+            <a href="test-merkezi.html" class="btn btn-secondary">
+              Test Merkezine Dön
+            </a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h3>Tarih Perdesi</h3>
+        <p>
+          Tarih ve edebiyatı anlaşılır, düzenli ve etkileşimli hâle getiren
+          öğrenci projesi.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="hakkinda.html">Hakkında</a>
+        <a href="iletisim.html">İletişim</a>
+        <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+      </div>
+    </div>
+
+    <div class="container copyright">
+      © <span id="currentYear"></span> Tarih Perdesi. Tüm hakları saklıdır.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="yazar-eser-testi.js"></script>
+</body>
+</html>
