@@ -1,4 +1,5 @@
 const yazarEserData = window.yazarEserVerileri || [];
+const eserOzetleri = window.eserOzetleri || {};
 
 const authorLibrary = document.getElementById("authorLibrary");
 const periodFilterRow = document.getElementById("periodFilterRow");
@@ -30,17 +31,28 @@ function getAllAuthorsCount() {
   }, 0);
 }
 
+function getWorkSummary(title) {
+  return eserOzetleri[title] || "";
+}
+
 function authorMatchesSearch(author, period) {
   if (!searchTerm) {
     return true;
   }
+
+  const searchableWorks = author.works.flatMap((work) => {
+    return work.items.flatMap((item) => {
+      return [item, getWorkSummary(item)];
+    });
+  });
 
   const haystack = [
     author.name,
     author.note,
     period.title,
     period.description,
-    ...author.works.flatMap((work) => [work.type, ...work.items])
+    ...author.works.map((work) => work.type),
+    ...searchableWorks
   ].join(" ");
 
   return normalizeText(haystack).includes(normalizeText(searchTerm));
@@ -74,13 +86,38 @@ function renderPeriodFilters() {
   });
 }
 
+function renderWorkItem(title) {
+  const summary = getWorkSummary(title);
+
+  if (!summary) {
+    return `
+      <div class="work-with-summary">
+        <strong class="work-title">${title}</strong>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="work-with-summary">
+      <strong class="work-title">${title}</strong>
+      <p class="work-summary">${summary}</p>
+    </div>
+  `;
+}
+
 function renderAuthorCard(author) {
   const worksHtml = author.works
     .map((work) => {
+      const itemsHtml = work.items
+        .map((item) => renderWorkItem(item))
+        .join("");
+
       return `
-        <li>
-          <strong>${work.type}:</strong>
-          ${work.items.join(", ")}
+        <li class="work-group-item">
+          <strong class="work-type-label">${work.type}:</strong>
+          <div class="work-items-list">
+            ${itemsHtml}
+          </div>
         </li>
       `;
     })
@@ -151,8 +188,7 @@ function renderLibrary() {
       <div class="library-empty-state">
         <h3>Sonuç bulunamadı.</h3>
         <p>
-          Aradığın yazar, eser veya dönem bu filtreyle eşleşmedi.
-          Biraz daha genel arama yap.
+          Aradığın yazar, eser, karakter veya içerik bu filtreyle eşleşmedi.
         </p>
       </div>
     `;

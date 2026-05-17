@@ -215,3 +215,51 @@
     align-items: flex-start;
   }
 }
+
+/* =========================================================
+   ESER İÇERİK AÇIKLAMALARI
+========================================================= */
+
+.work-group-item {
+  display: grid;
+  gap: 14px;
+}
+
+.work-type-label {
+  display: inline-block;
+  color: var(--burgundy);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.work-items-list {
+  display: grid;
+  gap: 12px;
+}
+
+.work-title-only {
+  display: inline-block;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.work-with-summary {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.work-title {
+  display: block;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.work-summary {
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}

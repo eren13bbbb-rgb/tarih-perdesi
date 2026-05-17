@@ -1,295 +1,44 @@
-const questionBank = [
-  {
-    category: "Roman",
-    question: "“Mai ve Siyah” adlı eser kime aittir?",
-    options: [
-      "Halit Ziya Uşaklıgil",
-      "Mehmet Rauf",
-      "Recaizade Mahmut Ekrem",
-      "Yakup Kadri Karaosmanoğlu"
-    ],
-    answer: "Halit Ziya Uşaklıgil",
-    explanation: "Mai ve Siyah, Servetifünun romanının en önemli örneklerinden biridir ve Halit Ziya Uşaklıgil tarafından yazılmıştır."
-  },
-  {
-    category: "Roman",
-    question: "“Araba Sevdası” adlı romanın yazarı kimdir?",
-    options: [
-      "Recaizade Mahmut Ekrem",
-      "Namık Kemal",
-      "Ahmet Mithat Efendi",
-      "Samipaşazade Sezai"
-    ],
-    answer: "Recaizade Mahmut Ekrem",
-    explanation: "Araba Sevdası, yanlış Batılılaşmayı ele alan ve Recaizade Mahmut Ekrem'e ait olan romandır."
-  },
-  {
-    category: "Roman",
-    question: "“İntibah” adlı eser hangi yazara aittir?",
-    options: [
-      "Namık Kemal",
-      "Şemsettin Sami",
-      "Ahmet Mithat Efendi",
-      "Nabizade Nazım"
-    ],
-    answer: "Namık Kemal",
-    explanation: "İntibah, Namık Kemal'in roman türündeki önemli eseridir."
-  },
-  {
-    category: "Roman",
-    question: "“Sergüzeşt” adlı romanın yazarı kimdir?",
-    options: [
-      "Samipaşazade Sezai",
-      "Recaizade Mahmut Ekrem",
-      "Namık Kemal",
-      "Mehmet Rauf"
-    ],
-    answer: "Samipaşazade Sezai",
-    explanation: "Sergüzeşt, kölelik temasını işleyen ve Samipaşazade Sezai tarafından yazılan romandır."
-  },
-  {
-    category: "Roman",
-    question: "“Eylül” adlı roman kime aittir?",
-    options: [
-      "Mehmet Rauf",
-      "Halit Ziya Uşaklıgil",
-      "Peyami Safa",
-      "Reşat Nuri Güntekin"
-    ],
-    answer: "Mehmet Rauf",
-    explanation: "Eylül, edebiyatımızın ilk psikolojik romanı kabul edilir ve Mehmet Rauf'a aittir."
-  },
-  {
-    category: "Roman",
-    question: "“Yaban” adlı romanın yazarı kimdir?",
-    options: [
-      "Yakup Kadri Karaosmanoğlu",
-      "Halide Edip Adıvar",
-      "Reşat Nuri Güntekin",
-      "Refik Halit Karay"
-    ],
-    answer: "Yakup Kadri Karaosmanoğlu",
-    explanation: "Yaban, Millî Mücadele yıllarında aydın-halk kopukluğunu işleyen Yakup Kadri romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Ateşten Gömlek” adlı eser kime aittir?",
-    options: [
-      "Halide Edip Adıvar",
-      "Yakup Kadri Karaosmanoğlu",
-      "Reşat Nuri Güntekin",
-      "Sabahattin Ali"
-    ],
-    answer: "Halide Edip Adıvar",
-    explanation: "Ateşten Gömlek, Millî Mücadele'yi konu alan önemli romanlardan biridir ve Halide Edip Adıvar'a aittir."
-  },
-  {
-    category: "Roman",
-    question: "“Kuyucaklı Yusuf” adlı romanın yazarı kimdir?",
-    options: [
-      "Sabahattin Ali",
-      "Peyami Safa",
-      "Tarık Buğra",
-      "Kemal Tahir"
-    ],
-    answer: "Sabahattin Ali",
-    explanation: "Kuyucaklı Yusuf, Sabahattin Ali'nin toplumcu gerçekçi çizgideki önemli romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Çalıkuşu” adlı eser kime aittir?",
-    options: [
-      "Reşat Nuri Güntekin",
-      "Halide Edip Adıvar",
-      "Yakup Kadri Karaosmanoğlu",
-      "Peyami Safa"
-    ],
-    answer: "Reşat Nuri Güntekin",
-    explanation: "Çalıkuşu, Reşat Nuri Güntekin'in en bilinen romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Dokuzuncu Hariciye Koğuşu” adlı romanın yazarı kimdir?",
-    options: [
-      "Peyami Safa",
-      "Ahmet Hamdi Tanpınar",
-      "Sabahattin Ali",
-      "Tarık Buğra"
-    ],
-    answer: "Peyami Safa",
-    explanation: "Dokuzuncu Hariciye Koğuşu, Peyami Safa'nın psikolojik yönü güçlü romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Huzur” adlı roman hangi yazara aittir?",
-    options: [
-      "Ahmet Hamdi Tanpınar",
-      "Peyami Safa",
-      "Oğuz Atay",
-      "Tarık Buğra"
-    ],
-    answer: "Ahmet Hamdi Tanpınar",
-    explanation: "Huzur, Ahmet Hamdi Tanpınar'ın modern Türk romanının önemli eserleri arasında yer alan romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Saatleri Ayarlama Enstitüsü” adlı eser kime aittir?",
-    options: [
-      "Ahmet Hamdi Tanpınar",
-      "Peyami Safa",
-      "Yakup Kadri Karaosmanoğlu",
-      "Reşat Nuri Güntekin"
-    ],
-    answer: "Ahmet Hamdi Tanpınar",
-    explanation: "Saatleri Ayarlama Enstitüsü, Ahmet Hamdi Tanpınar'ın toplum, zaman ve modernleşme ilişkisini işleyen romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Osmancık” adlı romanın yazarı kimdir?",
-    options: [
-      "Tarık Buğra",
-      "Kemal Tahir",
-      "Mustafa Necati Sepetçioğlu",
-      "Halide Edip Adıvar"
-    ],
-    answer: "Tarık Buğra",
-    explanation: "Osmancık, Osmanlı'nın kuruluş dönemini ele alan Tarık Buğra romanıdır."
-  },
-  {
-    category: "Hikâye",
-    question: "“Memleket Hikâyeleri” adlı eser kime aittir?",
-    options: [
-      "Refik Halit Karay",
-      "Ömer Seyfettin",
-      "Sait Faik Abasıyanık",
-      "Sabahattin Ali"
-    ],
-    answer: "Refik Halit Karay",
-    explanation: "Memleket Hikâyeleri, Anadolu gözlemlerini yansıtan Refik Halit Karay eseridir."
-  },
-  {
-    category: "Hikâye",
-    question: "“Kaşağı” adlı hikâyenin yazarı kimdir?",
-    options: [
-      "Ömer Seyfettin",
-      "Refik Halit Karay",
-      "Sait Faik Abasıyanık",
-      "Memduh Şevket Esendal"
-    ],
-    answer: "Ömer Seyfettin",
-    explanation: "Kaşağı, Ömer Seyfettin'in en tanınmış hikâyelerinden biridir."
-  },
-  {
-    category: "Şiir",
-    question: "“Safahat” adlı eser hangi şaire aittir?",
-    options: [
-      "Mehmet Âkif Ersoy",
-      "Tevfik Fikret",
-      "Yahya Kemal Beyatlı",
-      "Faruk Nafiz Çamlıbel"
-    ],
-    answer: "Mehmet Âkif Ersoy",
-    explanation: "Safahat, Mehmet Âkif Ersoy'un şiirlerini bir araya getiren en önemli eseridir."
-  },
-  {
-    category: "Şiir",
-    question: "“Çile” adlı şiir kitabı kime aittir?",
-    options: [
-      "Necip Fazıl Kısakürek",
-      "Cahit Sıtkı Tarancı",
-      "Ahmet Muhip Dıranas",
-      "Fazıl Hüsnü Dağlarca"
-    ],
-    answer: "Necip Fazıl Kısakürek",
-    explanation: "Çile, Necip Fazıl Kısakürek'in şiir dünyasını temsil eden temel eseridir."
-  },
-  {
-    category: "Şiir",
-    question: "“Han Duvarları” adlı eser kime aittir?",
-    options: [
-      "Faruk Nafiz Çamlıbel",
-      "Ahmet Kutsi Tecer",
-      "Kemalettin Kamu",
-      "Orhan Seyfi Orhon"
-    ],
-    answer: "Faruk Nafiz Çamlıbel",
-    explanation: "Han Duvarları, memleketçi şiir anlayışının simgelerinden biri olup Faruk Nafiz Çamlıbel'e aittir."
-  },
-  {
-    category: "Tiyatro",
-    question: "“Vatan Yahut Silistre” adlı tiyatro eserinin yazarı kimdir?",
-    options: [
-      "Namık Kemal",
-      "Abdülhak Hamit Tarhan",
-      "Şinasi",
-      "Ahmet Vefik Paşa"
-    ],
-    answer: "Namık Kemal",
-    explanation: "Vatan Yahut Silistre, Namık Kemal'in vatan temalı tiyatro eseridir."
-  },
-  {
-    category: "Roman",
-    question: "“Felâtun Bey ile Râkım Efendi” adlı eser kime aittir?",
-    options: [
-      "Ahmet Mithat Efendi",
-      "Recaizade Mahmut Ekrem",
-      "Namık Kemal",
-      "Şemsettin Sami"
-    ],
-    answer: "Ahmet Mithat Efendi",
-    explanation: "Felâtun Bey ile Râkım Efendi, yanlış Batılılaşmayı işleyen Ahmet Mithat Efendi romanıdır."
-  },
-  {
-    category: "Roman",
-    question: "“Taaşşuk-ı Talat ve Fitnat” adlı romanın yazarı kimdir?",
-    options: [
-      "Şemsettin Sami",
-      "Namık Kemal",
-      "Ahmet Mithat Efendi",
-      "Samipaşazade Sezai"
-    ],
-    answer: "Şemsettin Sami",
-    explanation: "Taaşşuk-ı Talat ve Fitnat, Türk edebiyatındaki ilk yerli roman kabul edilir ve Şemsettin Sami'ye aittir."
-  },
-  {
-    category: "Roman",
-    question: "“Sinekli Bakkal” adlı roman hangi yazara aittir?",
-    options: [
-      "Halide Edip Adıvar",
-      "Yakup Kadri Karaosmanoğlu",
-      "Reşat Nuri Güntekin",
-      "Peyami Safa"
-    ],
-    answer: "Halide Edip Adıvar",
-    explanation: "Sinekli Bakkal, Halide Edip Adıvar'ın önemli romanlarından biridir."
-  }
-];
+const yazarEserData = window.yazarEserVerileri || [];
 
-const QUESTION_COUNT = 10;
-
-const progressText = document.getElementById("progressText");
-const liveScore = document.getElementById("liveScore");
+const questionCounter = document.getElementById("questionCounter");
+const correctCounter = document.getElementById("correctCounter");
+const wrongCounter = document.getElementById("wrongCounter");
 const progressFill = document.getElementById("progressFill");
-const questionCategory = document.getElementById("questionCategory");
+
+const questionTypeLabel = document.getElementById("questionTypeLabel");
 const questionText = document.getElementById("questionText");
 const answerGrid = document.getElementById("answerGrid");
+
 const feedbackBox = document.getElementById("feedbackBox");
 const feedbackTitle = document.getElementById("feedbackTitle");
 const feedbackText = document.getElementById("feedbackText");
+
 const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 
-const testArea = document.getElementById("testArea");
-const resultArea = document.getElementById("resultArea");
-const finalCorrect = document.getElementById("finalCorrect");
-const finalWrong = document.getElementById("finalWrong");
-const finalPercent = document.getElementById("finalPercent");
+const testCard = document.getElementById("testCard");
+const resultCard = document.getElementById("resultCard");
+
+const resultCorrect = document.getElementById("resultCorrect");
+const resultWrong = document.getElementById("resultWrong");
+const resultScore = document.getElementById("resultScore");
 const resultMessage = document.getElementById("resultMessage");
 const restartTestBtn = document.getElementById("restartTestBtn");
 
-let activeQuestions = [];
+const QUESTION_COUNT = 24;
+
+let authors = [];
+let allWorks = [];
+let uniqueWorks = [];
+
+let testQuestions = [];
 let currentQuestionIndex = 0;
 let correctCount = 0;
+let wrongCount = 0;
 let answerLocked = false;
+
+/* =========================================================
+   GENEL YARDIMCI FONKSİYONLAR
+========================================================= */
 
 function shuffleArray(array) {
   const copy = [...array];
@@ -302,102 +51,341 @@ function shuffleArray(array) {
   return copy;
 }
 
-function prepareQuestions() {
-  activeQuestions = shuffleArray(questionBank)
-    .slice(0, QUESTION_COUNT)
-    .map((question) => ({
-      ...question,
-      options: shuffleArray(question.options)
-    }));
+function getRandomItems(array, count) {
+  return shuffleArray(array).slice(0, count);
 }
 
-function startTest() {
-  prepareQuestions();
+function normalizeText(value) {
+  return String(value)
+    .toLocaleLowerCase("tr-TR")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ı/g, "i")
+    .replace(/ş/g, "s")
+    .replace(/ğ/g, "g")
+    .replace(/ü/g, "u")
+    .replace(/ö/g, "o")
+    .replace(/ç/g, "c");
+}
+
+function getUniqueValues(array) {
+  return [...new Set(array)];
+}
+
+/* =========================================================
+   VERİYİ TEST HAVUZUNA ÇEVİR
+========================================================= */
+
+function prepareData() {
+  authors = [];
+  allWorks = [];
+
+  yazarEserData.forEach((period) => {
+    period.authors.forEach((author) => {
+      const authorEntry = {
+        name: author.name,
+        note: author.note,
+        periodId: period.id,
+        periodTitle: period.title,
+        works: []
+      };
+
+      author.works.forEach((workGroup) => {
+        workGroup.items.forEach((workTitle) => {
+          const workEntry = {
+            title: workTitle,
+            type: workGroup.type,
+            author: author.name,
+            periodId: period.id,
+            periodTitle: period.title
+          };
+
+          authorEntry.works.push(workEntry);
+          allWorks.push(workEntry);
+        });
+      });
+
+      authors.push(authorEntry);
+    });
+  });
+
+  createUniqueWorksPool();
+}
+
+function createUniqueWorksPool() {
+  const workCountMap = {};
+
+  allWorks.forEach((work) => {
+    const key = normalizeText(work.title);
+
+    if (!workCountMap[key]) {
+      workCountMap[key] = 0;
+    }
+
+    workCountMap[key]++;
+  });
+
+  uniqueWorks = allWorks.filter((work) => {
+    const key = normalizeText(work.title);
+    return workCountMap[key] === 1;
+  });
+}
+
+/* =========================================================
+   SORU ÜRETİMİ
+========================================================= */
+
+function buildQuestionPool() {
+  const questionPool = [];
+
+  uniqueWorks.forEach((work) => {
+    const workToAuthorQuestion = createWorkToAuthorQuestion(work);
+
+    if (workToAuthorQuestion) {
+      questionPool.push(workToAuthorQuestion);
+    }
+  });
+
+  authors.forEach((author) => {
+    const authorToWorkQuestion = createAuthorToWorkQuestion(author);
+
+    if (authorToWorkQuestion) {
+      questionPool.push(authorToWorkQuestion);
+    }
+  });
+
+  return shuffleArray(questionPool);
+}
+
+function createWorkToAuthorQuestion(work) {
+  const correctAuthor = work.author;
+
+  const samePeriodAuthors = authors
+    .filter((author) => {
+      return author.periodId === work.periodId && author.name !== correctAuthor;
+    })
+    .map((author) => author.name);
+
+  const otherAuthors = authors
+    .filter((author) => author.name !== correctAuthor)
+    .map((author) => author.name);
+
+  let distractors = getRandomItems(getUniqueValues(samePeriodAuthors), 3);
+
+  if (distractors.length < 3) {
+    const missingCount = 3 - distractors.length;
+
+    const extraPool = otherAuthors.filter((name) => {
+      return !distractors.includes(name);
+    });
+
+    distractors = [
+      ...distractors,
+      ...getRandomItems(getUniqueValues(extraPool), missingCount)
+    ];
+  }
+
+  if (distractors.length < 3) {
+    return null;
+  }
+
+  const options = shuffleArray([correctAuthor, ...distractors]);
+
+  return {
+    typeLabel: "Eserden Yazara",
+    questionText: `"${work.title}" adlı eser aşağıdaki sanatçılardan hangisine aittir?`,
+    correctAnswer: correctAuthor,
+    options,
+    explanation: `"${work.title}", ${correctAuthor} tarafından kaleme alınmıştır.`
+  };
+}
+
+function createAuthorToWorkQuestion(author) {
+  const uniqueWorksOfAuthor = author.works.filter((work) => {
+    return uniqueWorks.some((uniqueWork) => {
+      return (
+        normalizeText(uniqueWork.title) === normalizeText(work.title) &&
+        uniqueWork.author === author.name
+      );
+    });
+  });
+
+  if (uniqueWorksOfAuthor.length === 0) {
+    return null;
+  }
+
+  const correctWork = getRandomItems(uniqueWorksOfAuthor, 1)[0];
+
+  const samePeriodWorks = uniqueWorks
+    .filter((work) => {
+      return (
+        work.periodId === author.periodId &&
+        work.author !== author.name &&
+        normalizeText(work.title) !== normalizeText(correctWork.title)
+      );
+    })
+    .map((work) => work.title);
+
+  const otherWorks = uniqueWorks
+    .filter((work) => {
+      return (
+        work.author !== author.name &&
+        normalizeText(work.title) !== normalizeText(correctWork.title)
+      );
+    })
+    .map((work) => work.title);
+
+  let distractors = getRandomItems(getUniqueValues(samePeriodWorks), 3);
+
+  if (distractors.length < 3) {
+    const missingCount = 3 - distractors.length;
+
+    const extraPool = otherWorks.filter((title) => {
+      return !distractors.includes(title);
+    });
+
+    distractors = [
+      ...distractors,
+      ...getRandomItems(getUniqueValues(extraPool), missingCount)
+    ];
+  }
+
+  if (distractors.length < 3) {
+    return null;
+  }
+
+  const options = shuffleArray([correctWork.title, ...distractors]);
+
+  return {
+    typeLabel: "Sanatçıdan Esere",
+    questionText: `${author.name} aşağıdaki eserlerden hangisini yazmıştır?`,
+    correctAnswer: correctWork.title,
+    options,
+    explanation: `${author.name} — ${correctWork.title}`
+  };
+}
+
+function generateNewTest() {
+  const fullQuestionPool = buildQuestionPool();
+
+  testQuestions = getRandomItems(fullQuestionPool, QUESTION_COUNT);
 
   currentQuestionIndex = 0;
   correctCount = 0;
+  wrongCount = 0;
   answerLocked = false;
 
-  liveScore.textContent = correctCount;
-  testArea.classList.remove("hidden");
-  resultArea.classList.add("hidden");
+  testCard.classList.remove("hidden");
+  resultCard.classList.add("hidden");
 
-  renderQuestion();
+  renderCurrentQuestion();
+  updateCounters();
 }
 
-function renderQuestion() {
-  const currentQuestion = activeQuestions[currentQuestionIndex];
+/* =========================================================
+   SORUYU EKRANA BAS
+========================================================= */
+
+function renderCurrentQuestion() {
+  const currentQuestion = testQuestions[currentQuestionIndex];
+
+  if (!currentQuestion) {
+    finishTest();
+    return;
+  }
+
   answerLocked = false;
 
-  questionCategory.textContent = currentQuestion.category;
-  questionText.textContent = currentQuestion.question;
-  answerGrid.innerHTML = "";
+  questionTypeLabel.textContent = currentQuestion.typeLabel;
+  questionText.textContent = currentQuestion.questionText;
 
-  feedbackBox.classList.add("hidden");
-  feedbackBox.classList.remove("success", "error");
-  feedbackTitle.textContent = "";
-  feedbackText.textContent = "";
+  questionCounter.textContent = `${currentQuestionIndex + 1} / ${QUESTION_COUNT}`;
 
-  nextQuestionBtn.disabled = true;
-  nextQuestionBtn.textContent =
-    currentQuestionIndex === activeQuestions.length - 1
-      ? "Sonucu Gör"
-      : "Sonraki Soru";
-
-  progressText.textContent = `Soru ${currentQuestionIndex + 1} / ${activeQuestions.length}`;
-  const progressPercent = ((currentQuestionIndex + 1) / activeQuestions.length) * 100;
+  const progressPercent = ((currentQuestionIndex + 1) / QUESTION_COUNT) * 100;
   progressFill.style.width = `${progressPercent}%`;
+
+  answerGrid.innerHTML = "";
 
   currentQuestion.options.forEach((option) => {
     const button = document.createElement("button");
     button.className = "answer-btn";
-    button.type = "button";
     button.textContent = option;
 
     button.addEventListener("click", () => {
-      selectAnswer(button, option, currentQuestion);
+      handleAnswerSelection(button, option);
     });
 
     answerGrid.appendChild(button);
   });
+
+  feedbackBox.classList.add("hidden");
+  feedbackTitle.textContent = "";
+  feedbackText.textContent = "";
+
+  nextQuestionBtn.disabled = true;
+
+  if (currentQuestionIndex === QUESTION_COUNT - 1) {
+    nextQuestionBtn.textContent = "Sonucu Gör";
+  } else {
+    nextQuestionBtn.textContent = "Sonraki Soru";
+  }
 }
 
-function selectAnswer(selectedButton, selectedOption, currentQuestion) {
+/* =========================================================
+   CEVAP KONTROLÜ
+========================================================= */
+
+function handleAnswerSelection(clickedButton, selectedOption) {
   if (answerLocked) {
     return;
   }
 
   answerLocked = true;
 
+  const currentQuestion = testQuestions[currentQuestionIndex];
   const allAnswerButtons = document.querySelectorAll(".answer-btn");
-  const isCorrect = selectedOption === currentQuestion.answer;
 
   allAnswerButtons.forEach((button) => {
     button.disabled = true;
 
-    if (button.textContent === currentQuestion.answer) {
+    if (button.textContent === currentQuestion.correctAnswer) {
       button.classList.add("reveal-correct");
     }
   });
 
+  const isCorrect = selectedOption === currentQuestion.correctAnswer;
+
   if (isCorrect) {
     correctCount++;
-    liveScore.textContent = correctCount;
-    selectedButton.classList.add("correct");
+    clickedButton.classList.add("correct");
 
-    feedbackBox.classList.add("success");
     feedbackTitle.textContent = "Doğru cevap.";
     feedbackText.textContent = currentQuestion.explanation;
+    feedbackBox.classList.remove("error");
+    feedbackBox.classList.add("success");
   } else {
-    selectedButton.classList.add("wrong");
+    wrongCount++;
+    clickedButton.classList.add("wrong");
 
+    feedbackTitle.textContent = "Yanlış cevap.";
+    feedbackText.textContent = `Doğru cevap: ${currentQuestion.correctAnswer}. ${currentQuestion.explanation}`;
+    feedbackBox.classList.remove("success");
     feedbackBox.classList.add("error");
-    feedbackTitle.textContent = `Yanlış. Doğru cevap: ${currentQuestion.answer}`;
-    feedbackText.textContent = currentQuestion.explanation;
   }
 
   feedbackBox.classList.remove("hidden");
   nextQuestionBtn.disabled = false;
+
+  updateCounters();
+}
+
+/* =========================================================
+   SAYAÇLAR VE SONUÇ EKRANI
+========================================================= */
+
+function updateCounters() {
+  correctCounter.textContent = correctCount;
+  wrongCounter.textContent = wrongCount;
 }
 
 function goToNextQuestion() {
@@ -405,41 +393,50 @@ function goToNextQuestion() {
     return;
   }
 
-  if (currentQuestionIndex < activeQuestions.length - 1) {
-    currentQuestionIndex++;
-    renderQuestion();
+  if (currentQuestionIndex >= QUESTION_COUNT - 1) {
+    finishTest();
+    return;
+  }
+
+  currentQuestionIndex++;
+  renderCurrentQuestion();
+}
+
+function finishTest() {
+  testCard.classList.add("hidden");
+  resultCard.classList.remove("hidden");
+
+  const score = Math.round((correctCount / QUESTION_COUNT) * 100);
+
+  resultCorrect.textContent = correctCount;
+  resultWrong.textContent = wrongCount;
+  resultScore.textContent = score;
+
+  if (score >= 90) {
+    resultMessage.textContent =
+      "Çok güçlü. Yazar-eser eşleştirmelerinde ciddi boşluk görünmüyor.";
+  } else if (score >= 75) {
+    resultMessage.textContent =
+      "Gayet iyi. Birkaç karışan isim var, rehberden kısa tekrar yeter.";
+  } else if (score >= 55) {
+    resultMessage.textContent =
+      "Temel var ama dağınık. Özellikle karıştırdığın dönemleri tekrar tara.";
   } else {
-    showResult();
+    resultMessage.textContent =
+      "Bu alan net bırakmaz. Rehbere dön, dönem dönem çalış, sonra testi yeniden çöz.";
   }
 }
 
-function showResult() {
-  testArea.classList.add("hidden");
-  resultArea.classList.remove("hidden");
-
-  const wrongCount = activeQuestions.length - correctCount;
-  const percent = Math.round((correctCount / activeQuestions.length) * 100);
-
-  finalCorrect.textContent = correctCount;
-  finalWrong.textContent = wrongCount;
-  finalPercent.textContent = `%${percent}`;
-
-  if (percent >= 90) {
-    resultMessage.textContent =
-      "Çok iyi. Yazar-eser bağlantıları sağlam oturmuş. Bu tempoyu korursan sınavda buradan puan bırakmazsın.";
-  } else if (percent >= 70) {
-    resultMessage.textContent =
-      "İyi gidiyorsun. Temel sağlam, ama birkaç eserde karışıklık var. Bir tur daha çözmek mantıklı.";
-  } else if (percent >= 50) {
-    resultMessage.textContent =
-      "Orta seviye. Bildiklerin var ama soru geldiğinde kararsız kalma ihtimalin yüksek. Tekrar şart.";
-  } else {
-    resultMessage.textContent =
-      "Bu havuz seni biraz hırpalamış. Sorun değil, test zaten bunun için var. Önce yazar-eser PDF’sine dönüp sonra yeniden çöz.";
-  }
-}
+/* =========================================================
+   OLAY BAĞLANTILARI
+========================================================= */
 
 nextQuestionBtn.addEventListener("click", goToNextQuestion);
-restartTestBtn.addEventListener("click", startTest);
+restartTestBtn.addEventListener("click", generateNewTest);
 
-startTest();
+/* =========================================================
+   BAŞLAT
+========================================================= */
+
+prepareData();
+generateNewTest();

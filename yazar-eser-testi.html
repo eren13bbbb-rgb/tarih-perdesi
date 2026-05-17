@@ -10,13 +10,14 @@
 
     gtag('config', 'G-6642PLP14P');
   </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>AYT Edebiyat Yazar–Eser Testi | Tarih Perdesi</title>
   <meta
     name="description"
-    content="AYT Edebiyat yazar-eser testi. Rastgele sorularla önemli sanatçı-eser eşleştirmelerini tekrar edin ve sonucunuzu görün."
+    content="AYT Edebiyat yazar-eser testi. 100 sanatçı ve eser havuzundan otomatik üretilen rastgele sorularla kendini dene."
   />
 
   <link rel="stylesheet" href="style.css" />
@@ -49,53 +50,56 @@
   </header>
 
   <main>
-    <section class="page-hero subject-hero">
-      <div class="container subject-hero-grid">
-        <div>
-          <p class="eyebrow">AYT EDEBİYAT TESTİ</p>
-          <h1>Yazar–Eser Testi</h1>
-          <p>
-            Her testte soru havuzundan rastgele seçilen 10 soru gelir.
-            Şıklar karışır, cevabını seçtikten sonra doğruyu görürsün,
-            test sonunda da net biçimde sonucun çıkar.
-          </p>
-        </div>
+    <section class="page-hero">
+      <div class="container narrow-container">
+        <p class="eyebrow">AYT EDEBİYAT TESTİ</p>
+        <h1>Yazar–Eser Testi</h1>
+        <p>
+          Rehberdeki 100 sanatçı ve eser havuzundan otomatik oluşturulan
+          24 soruluk rastgele test. Ezberledim sanma, sistem hemen yoklar.
+        </p>
 
-        <aside class="hero-summary-card">
-          <h3>Test yapısı</h3>
-          <ul>
-            <li>10 rastgele soru</li>
-            <li>Karışık şıklar</li>
-            <li>Anında doğru-yanlış geri bildirimi</li>
-            <li>Sonuç ekranı</li>
-          </ul>
-        </aside>
+        <div class="guide-actions">
+          <a href="yazar-eser-rehberi.html" class="btn btn-secondary">
+            Rehbere Dön
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="content-section">
       <div class="container test-shell">
-        <!-- TEST EKRANI -->
-        <section class="interactive-test-card" id="testArea">
+
+        <div class="interactive-test-card" id="testCard">
           <div class="test-meta">
             <div>
-              <span class="meta-label">İlerleme</span>
-              <strong id="progressText">Soru 1 / 10</strong>
+              <span class="meta-label">Soru</span>
+              <strong id="questionCounter">1 / 24</strong>
             </div>
 
             <div>
               <span class="meta-label">Doğru</span>
-              <strong id="liveScore">0</strong>
+              <strong id="correctCounter">0</strong>
+            </div>
+
+            <div>
+              <span class="meta-label">Yanlış</span>
+              <strong id="wrongCounter">0</strong>
             </div>
           </div>
 
-          <div class="progress-track" aria-hidden="true">
+          <div class="progress-track">
             <div class="progress-fill" id="progressFill"></div>
           </div>
 
-          <article class="question-card">
-            <p class="question-kicker" id="questionCategory">Yazar–Eser</p>
-            <h2 id="questionText">Soru hazırlanıyor...</h2>
+          <div class="question-card">
+            <p class="question-kicker" id="questionTypeLabel">
+              Yazar–Eser Eşleştirme
+            </p>
+
+            <h2 id="questionText">
+              Soru yükleniyor...
+            </h2>
 
             <div class="answer-grid" id="answerGrid"></div>
 
@@ -105,32 +109,31 @@
             </div>
 
             <div class="test-controls">
-              <button class="btn btn-primary small-btn" id="nextQuestionBtn" disabled>
+              <button class="btn btn-primary" id="nextQuestionBtn" disabled>
                 Sonraki Soru
               </button>
             </div>
-          </article>
-        </section>
+          </div>
+        </div>
 
-        <!-- SONUÇ EKRANI -->
-        <section class="result-card hidden" id="resultArea">
+        <div class="result-card hidden" id="resultCard">
           <p class="eyebrow">TEST TAMAMLANDI</p>
-          <h2>Sonucun hazır.</h2>
+          <h2>Sonuç ekranı</h2>
 
           <div class="result-score-grid">
             <div class="result-score-box">
-              <strong id="finalCorrect">0</strong>
+              <strong id="resultCorrect">0</strong>
               <span>Doğru</span>
             </div>
 
             <div class="result-score-box">
-              <strong id="finalWrong">0</strong>
+              <strong id="resultWrong">0</strong>
               <span>Yanlış</span>
             </div>
 
             <div class="result-score-box">
-              <strong id="finalPercent">%0</strong>
-              <span>Başarı</span>
+              <strong id="resultScore">0</strong>
+              <span>Puan</span>
             </div>
           </div>
 
@@ -138,14 +141,15 @@
 
           <div class="result-actions">
             <button class="btn btn-primary" id="restartTestBtn">
-              Testi Yeniden Çöz
+              Yeni Test Başlat
             </button>
 
-            <a href="test-merkezi.html" class="btn btn-secondary">
-              Test Merkezine Dön
+            <a href="yazar-eser-rehberi.html" class="btn btn-secondary">
+              Rehbere Dön
             </a>
           </div>
-        </section>
+        </div>
+
       </div>
     </section>
   </main>
@@ -173,6 +177,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="yazar-eser-verileri.js"></script>
   <script src="yazar-eser-testi.js"></script>
 </body>
 </html>
