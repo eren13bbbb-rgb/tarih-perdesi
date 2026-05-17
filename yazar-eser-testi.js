@@ -1,4 +1,5 @@
 const yazarEserData = window.yazarEserVerileri || [];
+const eserOzetleri = window.eserOzetleri || {};
 
 const questionCounter = document.getElementById("questionCounter");
 const correctCounter = document.getElementById("correctCounter");
@@ -29,6 +30,7 @@ const QUESTION_COUNT = 24;
 let authors = [];
 let allWorks = [];
 let uniqueWorks = [];
+let summaryWorks = [];
 
 let testQuestions = [];
 let currentQuestionIndex = 0;
@@ -97,7 +99,8 @@ function prepareData() {
             type: workGroup.type,
             author: author.name,
             periodId: period.id,
-            periodTitle: period.title
+            periodTitle: period.title,
+            summary: eserOzetleri[workTitle] || ""
           };
 
           authorEntry.works.push(workEntry);
@@ -110,6 +113,7 @@ function prepareData() {
   });
 
   createUniqueWorksPool();
+  createSummaryWorksPool();
 }
 
 function createUniqueWorksPool() {
@@ -131,8 +135,14 @@ function createUniqueWorksPool() {
   });
 }
 
+function createSummaryWorksPool() {
+  summaryWorks = uniqueWorks.filter((work) => {
+    return work.summary && work.summary.trim().length > 0;
+  });
+}
+
 /* =========================================================
-   SORU ÜRETİMİ
+   SORU HAVUZU
 ========================================================= */
 
 function buildQuestionPool() {
@@ -154,8 +164,25 @@ function buildQuestionPool() {
     }
   });
 
+  summaryWorks.forEach((work) => {
+    const summaryToWorkQuestion = createSummaryToWorkQuestion(work);
+    const summaryToAuthorQuestion = createSummaryToAuthorQuestion(work);
+
+    if (summaryToWorkQuestion) {
+      questionPool.push(summaryToWorkQuestion);
+    }
+
+    if (summaryToAuthorQuestion) {
+      questionPool.push(summaryToAuthorQuestion);
+    }
+  });
+
   return shuffleArray(questionPool);
 }
+
+/* =========================================================
+   1. SORU TİPİ: ESER -> YAZAR
+========================================================= */
 
 function createWorkToAuthorQuestion(work) {
   const correctAuthor = work.author;
@@ -196,9 +223,13 @@ function createWorkToAuthorQuestion(work) {
     questionText: `"${work.title}" adlı eser aşağıdaki sanatçılardan hangisine aittir?`,
     correctAnswer: correctAuthor,
     options,
-    explanation: `"${work.title}", ${correctAuthor} tarafından kaleme alınmıştır.`
+    explanation: `"${work.title}", ${correctAuthor} tarafından yazılmıştır.`
   };
 }
+
+/* =========================================================
+   2. SORU TİPİ: YAZAR -> ESER
+========================================================= */
 
 function createAuthorToWorkQuestion(author) {
   const uniqueWorksOfAuthor = author.works.filter((work) => {
@@ -264,6 +295,109 @@ function createAuthorToWorkQuestion(author) {
     explanation: `${author.name} — ${correctWork.title}`
   };
 }
+
+/* =========================================================
+   3. SORU TİPİ: İÇERİK -> ESER
+========================================================= */
+
+function createSummaryToWorkQuestion(work) {
+  const correctWork = work.title;
+
+  const samePeriodWorks = summaryWorks
+    .filter((item) => {
+      return (
+        item.periodId === work.periodId &&
+        normalizeText(item.title) !== normalizeText(correctWork)
+      );
+    })
+    .map((item) => item.title);
+
+  const otherWorks = summaryWorks
+    .filter((item) => {
+      return normalizeText(item.title) !== normalizeText(correctWork);
+    })
+    .map((item) => item.title);
+
+  let distractors = getRandomItems(getUniqueValues(samePeriodWorks), 3);
+
+  if (distractors.length < 3) {
+    const missingCount = 3 - distractors.length;
+
+    const extraPool = otherWorks.filter((title) => {
+      return !distractors.includes(title);
+    });
+
+    distractors = [
+      ...distractors,
+      ...getRandomItems(getUniqueValues(extraPool), missingCount)
+    ];
+  }
+
+  if (distractors.length < 3) {
+    return null;
+  }
+
+  const options = shuffleArray([correctWork, ...distractors]);
+
+  return {
+    typeLabel: "İçerikten Esere",
+    questionText: `${work.summary} Bu açıklama aşağıdaki eserlerden hangisine aittir?`,
+    correctAnswer: correctWork,
+    options,
+    explanation: `Doğru eser: ${correctWork}. Yazarı: ${work.author}.`
+  };
+}
+
+/* =========================================================
+   4. SORU TİPİ: İÇERİK -> YAZAR
+========================================================= */
+
+function createSummaryToAuthorQuestion(work) {
+  const correctAuthor = work.author;
+
+  const samePeriodAuthors = authors
+    .filter((author) => {
+      return author.periodId === work.periodId && author.name !== correctAuthor;
+    })
+    .map((author) => author.name);
+
+  const otherAuthors = authors
+    .filter((author) => author.name !== correctAuthor)
+    .map((author) => author.name);
+
+  let distractors = getRandomItems(getUniqueValues(samePeriodAuthors), 3);
+
+  if (distractors.length < 3) {
+    const missingCount = 3 - distractors.length;
+
+    const extraPool = otherAuthors.filter((name) => {
+      return !distractors.includes(name);
+    });
+
+    distractors = [
+      ...distractors,
+      ...getRandomItems(getUniqueValues(extraPool), missingCount)
+    ];
+  }
+
+  if (distractors.length < 3) {
+    return null;
+  }
+
+  const options = shuffleArray([correctAuthor, ...distractors]);
+
+  return {
+    typeLabel: "İçerikten Yazara",
+    questionText: `${work.summary} Bu eser aşağıdaki sanatçılardan hangisine aittir?`,
+    correctAnswer: correctAuthor,
+    options,
+    explanation: `Bu açıklama "${work.title}" eserine aittir. Yazarı: ${correctAuthor}.`
+  };
+}
+
+/* =========================================================
+   TESTİ BAŞLAT
+========================================================= */
 
 function generateNewTest() {
   const fullQuestionPool = buildQuestionPool();
@@ -414,16 +548,16 @@ function finishTest() {
 
   if (score >= 90) {
     resultMessage.textContent =
-      "Çok güçlü. Yazar-eser eşleştirmelerinde ciddi boşluk görünmüyor.";
+      "Çok güçlü. Yazar-eser ve içerik eşleştirmelerinde ciddi boşluk görünmüyor.";
   } else if (score >= 75) {
     resultMessage.textContent =
-      "Gayet iyi. Birkaç karışan isim var, rehberden kısa tekrar yeter.";
+      "Gayet iyi. Birkaç eser içeriği veya sanatçı karışıyor; kısa tekrar yeter.";
   } else if (score >= 55) {
     resultMessage.textContent =
-      "Temel var ama dağınık. Özellikle karıştırdığın dönemleri tekrar tara.";
+      "Temel var ama dağınık. Özellikle eser içerikleriyle yazarları birlikte tekrar et.";
   } else {
     resultMessage.textContent =
-      "Bu alan net bırakmaz. Rehbere dön, dönem dönem çalış, sonra testi yeniden çöz.";
+      "Bu alan net bırakmaz. Rehbere dön, eser içeriklerini de çalış, sonra testi yeniden çöz.";
   }
 }
 
