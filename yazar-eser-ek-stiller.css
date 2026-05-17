@@ -1,0 +1,217 @@
+/* =========================================================
+   YAZAR - ESER GELİŞMİŞ KÜTÜPHANE
+========================================================= */
+
+.library-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 26px;
+  margin-bottom: 28px;
+}
+
+.library-search-card {
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.library-search-card label {
+  display: block;
+  color: var(--burgundy);
+  font-size: 16px;
+  font-weight: 950;
+  margin-bottom: 14px;
+}
+
+.library-search-card input {
+  width: 100%;
+  min-height: 62px;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  outline: none;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
+}
+
+.library-search-card input:focus {
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(154, 106, 47, 0.12);
+}
+
+.library-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.library-stat-card {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 142px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.library-stat-card strong {
+  color: var(--burgundy);
+  font-size: 38px;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.library-stat-card span {
+  color: var(--text-soft);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.period-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.period-filter-btn {
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-soft);
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.period-filter-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--burgundy);
+}
+
+.period-filter-btn.active {
+  color: #fffaf3;
+  background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+  border-color: transparent;
+  box-shadow: 0 14px 28px rgba(111, 47, 50, 0.18);
+}
+
+.author-library {
+  display: grid;
+  gap: 54px;
+}
+
+.period-heading-text {
+  display: grid;
+  gap: 4px;
+}
+
+.period-match-count {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.author-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.author-order {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  color: #fff8ef;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  font-size: 15px;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(125, 82, 32, 0.16);
+}
+
+.author-card-top h4 {
+  margin-bottom: 0;
+}
+
+.library-empty-state {
+  padding: 42px;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.library-empty-state h3 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.library-empty-state p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--text-soft);
+  font-size: 18px;
+}
+
+.guide-final-content {
+  display: grid;
+  gap: 22px;
+  justify-items: start;
+}
+
+@media (max-width: 1080px) {
+  .library-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .library-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .library-stat-card {
+    min-height: 110px;
+  }
+
+  .period-filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .author-card-top {
+    align-items: flex-start;
+  }
+}
